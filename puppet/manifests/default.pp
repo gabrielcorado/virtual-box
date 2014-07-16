@@ -23,3 +23,13 @@ exec { 'npm-install':
   command => "${as_vagrant} 'curl -L https://npmjs.org/install.sh | sh'",
   require => Exec['node-install']
 }
+
+class { 'redis':
+  version => '2.8.13',
+}
+
+redis::instance { 'redis-6900':
+  redis_port         => '6900',
+  redis_bind_address => '10.1.2.3',
+  redis_max_memory   => '1gb',
+}
